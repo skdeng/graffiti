@@ -33,3 +33,13 @@ def get_local_buysell_label(price_series, price_diff_min=0, hold=0, buy_label=1,
     all_points[sell_points] = sell_label
 
     return all_points
+
+
+def get_price_change_label(price_series, type='ratio'):
+    price_series_base = price_series[:-1]
+    price_series_forward = price_series[1:]
+
+    if type == 'ratio':
+        return price_series_forward / price_series_base
+    elif type == 'value':
+        return price_series_forward - price_series_base
