@@ -1,0 +1,17 @@
+matplotlib==3.0.1
+more-itertools==4.3.0
+numpy==1.15.3
+pandas==0.23.4
+pluggy==0.8.0
+py==1.7.0
+pycodestyle==2.4.0
+pyparsing==2.2.2
+pytest==3.9.3
+python-dateutil==2.7.5
+pytz==2018.7
+Quandl==3.4.4
+requests==2.20.0
+scipy==1.1.0
+six==1.11.0
+urllib3==1.24
+wrapt==1.10.11

@@ -1,6 +1,6 @@
 import numpy as np
 
-from dsi.data_processor.data_label import get_local_buysell_label
+from dsi.data_processor.data_label import *
 
 
 def test_get_local_buysell_label():
@@ -15,3 +15,24 @@ def test_get_local_buysell_label():
     expected_results[12] = -1
     result = get_local_buysell_label(input_data)
     assert np.array_equal(expected_results, result)
+
+
+def test_get_price_change_label():
+    input_data = np.array([1, 1, 1])
+
+    expected_results = np.array([1, 1])
+    results = get_price_change_label(input_data, type='ratio')
+    assert np.array_equal(expected_results, results)
+
+    expected_results = np.array([0, 0])
+    results = get_price_change_label(input_data, type='value')
+    assert np.array_equal(expected_results, results)
+
+    input_data = np.array([1, 2, 4, 10])
+    expected_results = np.array([2, 2, 2.5])
+    results = get_price_change_label(input_data, type='ratio')
+    assert np.array_equal(expected_results, results)
+
+    expected_results = np.array([1, 2, 6])
+    results = get_price_change_label(input_data, type='value')
+    assert np.array_equal(expected_results, results)
