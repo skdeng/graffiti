@@ -1,3 +1,7 @@
+Project DSI
+
+[![Build Status](https://travis-ci.com/skdeng/dsi.svg?branch=master)](https://travis-ci.com/skdeng/dsi)
+
 # Setup
 
 ### Install python packges:
