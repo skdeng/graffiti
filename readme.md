@@ -19,4 +19,4 @@ Prerequisite: [Install nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
 
 `docker pull tensorflow/tensorflow:latest-gpu-py3`
 
-_NOTE: It is not recommended to run the train session without GPU support_
+_NOTE: It is not recommended to run the training session without GPU support_
