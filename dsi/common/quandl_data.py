@@ -3,7 +3,7 @@ import quandl
 
 class QuandlDataSource:
     def __init__(self, api_key):
-        quandl.ApiConfig.api_key = 'xM6Bh-vY7JsUncDqo7SE'
+        quandl.ApiConfig.api_key = api_key
 
     def get_wti_daily(self):
         data = quandl.get("EIA/PET_RWTC_D", returns='numpy')
@@ -14,6 +14,9 @@ class QuandlDataSource:
         return data
 
     def get_us_stock_daily_close(self, ticker):
+        """
+        Return daily stock data as a pandas DataFrame with 'ticker', 'date' and 'close' columns
+        """
         data = quandl.get_table(
             'WIKI/PRICES', qopts={'columns': ['ticker', 'date', 'close']}, ticker=[ticker])
         return data

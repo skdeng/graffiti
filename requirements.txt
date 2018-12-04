@@ -11,6 +11,7 @@ python-dateutil==2.7.5
 pytz==2018.7
 Quandl==3.4.4
 requests==2.20.0
+scikit-learn==0.20.0
 scipy==1.1.0
 six==1.11.0
 urllib3==1.24

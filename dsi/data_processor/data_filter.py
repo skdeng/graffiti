@@ -2,6 +2,9 @@ import numpy as np
 
 
 def moving_average(data, n):
+    """
+    Calculate the moving average of a data series with a window length of N
+    """
     ret = np.cumsum(data)
     ret[n:] = ret[n:] - ret[:-n]
     return ret[n-1:] / n
