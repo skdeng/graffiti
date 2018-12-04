@@ -1,6 +1,7 @@
 class Portfolio:
-    def __init__(self):
+    def __init__(self, overdraw=False):
         self.securities = {}
+        self.overdraw = overdraw
 
     def add_security(self, security_name, quantity):
         """
@@ -12,11 +13,11 @@ class Portfolio:
         """
         if security_name in self.securities:
             new_quantity = self.securities[security_name] + quantity
-            if new_quantity < 0:
+            if not self.overdraw and new_quantity < 0:
                 raise "Removing more than what's available"
             self.securities[security_name] = new_quantity
         else:
-            if quantity < 0:
+            if not self.overdraw and quantity < 0:
                 raise "Removing from empty security"
             self.securities[security_name] = quantity
 
@@ -46,7 +47,7 @@ class Portfolio:
             :param quantity: quantity to set
             :raises Exception: exception when quantity is negative
         """
-        if quantity < 0:
+        if not self.overdraw and quantity < 0:
             raise "Setting negative quantity"
 
         self.securities[security_name] = quantity
