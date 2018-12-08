@@ -13,12 +13,14 @@ class QuandlDataSource:
         data = quandl.get("RATEINF/CPI_USA", returns='numpy')
         return data
 
-    def get_us_stock_daily_close(self, ticker):
+    def get_us_stock_daily(self, ticker):
         """
-        Return daily stock data as a pandas DataFrame with 'ticker', 'date' and 'close' columns
+        Return daily stock data as a pandas DataFrame
         """
-        data = quandl.get_table(
-            'WIKI/PRICES', qopts={'columns': ['ticker', 'date', 'close']}, ticker=[ticker])
+        data = quandl.get_table('WIKI/PRICES', ticker=[ticker], paginate=True)
+        # quandl data is from most recent to least recent, invert it
+        data = data.reindex(index=data.index[::-1])
+        data = data.reset_index()
         return data
 
     def get_bitfinex_btcusd_daily(self):

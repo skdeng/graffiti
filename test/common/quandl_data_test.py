@@ -7,7 +7,7 @@ from dsi.data_processor.data_label import (get_buysell_points_coordinates,
                                            get_local_buysell_label)
 
 data_source = QuandlDataSource('xM6Bh-vY7JsUncDqo7SE')
-msft_data = data_source.get_us_stock_daily_close('MSFT')
+msft_data = data_source.get_us_stock_daily('MSFT')
 
 price = np.array(msft_data['close'])
 plt.plot(price)

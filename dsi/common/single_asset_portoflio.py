@@ -7,6 +7,15 @@ from dsi.common.portfolio import Portfolio
 
 class SingleAssetPortfolio(Portfolio):
     def __init__(self, currency_symbol='usd', asset_symbol='asset', initial_currency=0, initial_asset=0, overdraw=False):
+        """
+        Constructor
+            :param self: self
+            :param currency_symbol='usd': Symbol of the currency
+            :param asset_symbol='asset': Symbol of the asset
+            :param initial_currency=0: Starting currency amount
+            :param initial_asset=0: Starting asset amount
+            :param overdraw=False: Whether trade actions that result in negative currency/asset amounts are allowed
+        """
         super().__init__(overdraw=overdraw)
         self.currency = currency_symbol
         self.asset = asset_symbol
@@ -58,18 +67,22 @@ class SingleAssetPortfolio(Portfolio):
         return self.get_currency() + self.get_asset() * price
 
     def apply_trade_actions(self, price_series, trade_actions, flat_fee=0, ratio_fee=0):
+        price_series_close = price_series['close']
         assert len(trade_actions) == len(price_series)
         history = []
-        history.append(self.get_total_value(price_series[0]))
+        history.append(self.get_total_value(price_series_close[0]))
         for i in range(len(trade_actions)):
             trade_volume = abs(trade_actions[i])
             if trade_actions[i] > 0:
                 self.buy(
-                    amount=trade_volume, price=price_series[i], flat_fee=flat_fee, ratio_fee=ratio_fee)
+                    amount=trade_volume, price=price_series_close[i], flat_fee=flat_fee, ratio_fee=ratio_fee)
             elif trade_actions[i] < 0:
                 self.sell(
-                    amount=trade_volume, price=price_series[i], flat_fee=flat_fee, ratio_fee=ratio_fee)
-            history.append(self.get_total_value(price_series[i]))
+                    amount=trade_volume, price=price_series_close[i], flat_fee=flat_fee, ratio_fee=ratio_fee)
+
+            if price_series['split_ratio'][i] > 1.0:
+                self.securities[self.asset] *= price_series['split_ratio'][i]
+            history.append(self.get_total_value(price_series_close[i]))
 
         return np.round(history, decimals=2)
 

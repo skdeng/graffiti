@@ -4,6 +4,8 @@ import numpy as np
 def run_strategy(price_data, config):
     immediate_setup_restart = config.get('immediate_setup_restart', True)
 
+    price_data = price_data['close']
+
     setup_short = [0] * 4
     for i in range(4, len(price_data)):
         current_setup_short = 0
