@@ -3,6 +3,12 @@
     "initial_currency": 1000,
     "initial_asset": 10
   },
+  "input": {
+    "input_type": "quandl",
+    "input_source": "xM6Bh-vY7JsUncDqo7SE",
+    "symbol": "MSFT",
+    "display": "true"
+  },
   "strategies": [
     {
       "file": "dsi\\strategies\\mr_strategy.py",
@@ -43,10 +49,5 @@
     {
       "file": "dsi/strategies/hold_strategy.py"
     }
-  ],
-  "input": {
-    "type": "quandl",
-    "symbol": "MSFT",
-    "api_key": "xM6Bh-vY7JsUncDqo7SE"
-  }
+  ]
 }

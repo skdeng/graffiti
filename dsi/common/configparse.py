@@ -5,6 +5,10 @@ from dsi.common.quandl_data import QuandlDataSource
 from dsi.common.single_asset_portoflio import Portfolio, SingleAssetPortfolio
 
 
+def override_config_params(config, name, value):
+    nodes = names.split('.')
+    
+
 def get_portfolio(config):
     if 'single_asset_portfolio' in config:
         return SingleAssetPortfolio(
@@ -26,6 +30,6 @@ def get_inputpricedata(config):
             return pandas.read_csv(config['file'])
         elif input_type == 'quandl':
             quandl_data_source = QuandlDataSource(config_input['api_key'])
-            return np.array(quandl_data_source.get_us_stock_daily_close(config_input['symbol'])['close'])
+            return quandl_data_source.get_us_stock_daily(config_input['symbol'])
     else:
         raise "Config does not have an input section"
