@@ -1,17 +1,18 @@
 import numpy as np
 
-from dsi.common.functions import select_sum
-from dsi.common.order import Order
-from dsi.common.portfolio import Portfolio
+from graffiti.common.functions import select_sum
+from . import OrderSide
+from . import Trade
+from . import Portfolio
 
 
 class SingleAssetPortfolio(Portfolio):
-    def __init__(self, currency_symbol='usd', asset_symbol='asset', initial_currency=0, initial_asset=0, overdraw=False):
+    def __init__(self, currency_symbol=Portfolio.default_currency, asset_symbol=Portfolio.default_asset, initial_currency=0, initial_asset=0, overdraw=False):
         """
         Constructor
             :param self: self
-            :param currency_symbol='usd': Symbol of the currency
-            :param asset_symbol='asset': Symbol of the asset
+            :param currency_symbol: Symbol of the currency
+            :param asset_symbol: Symbol of the asset
             :param initial_currency=0: Starting currency amount
             :param initial_asset=0: Starting asset amount
             :param overdraw=False: Whether trade actions that result in negative currency/asset amounts are allowed
@@ -39,9 +40,9 @@ class SingleAssetPortfolio(Portfolio):
         self.add_security(self.currency, -total_price)
         self.add_security(self.asset, amount)
 
-        self.orders.append(Order('buy', amount, total_price,
-                                 base_currency=self.currency, security=self.asset))
-
+        self.orders.append(Trade(base_currency=self.currency, ticker=self.asset,
+                                volume=amount, price=price,
+                                side=OrderSide.Buy))
         return amount
 
     def sell(self, amount, price, flat_fee=0, ratio_fee=0):
@@ -54,8 +55,9 @@ class SingleAssetPortfolio(Portfolio):
         self.add_security(self.currency, total_price)
         self.add_security(self.asset, -amount)
 
-        self.orders.append(Order('sell', amount, total_price,
-                                 base_currency=self.currency, security=self.asset))
+        self.orders.append(Trade(base_currency=self.currency, ticker=self.asset,
+                                volume=amount, price=price,
+                                side=OrderSide.Sell))
         return amount
 
     def total_buyable_amount(self, price, flat_fee=0, ratio_fee=0):
@@ -87,11 +89,11 @@ class SingleAssetPortfolio(Portfolio):
         return np.round(history, decimals=2)
 
     def get_orders_vwap(self):
-        buy_orders = list(filter(lambda o: o.side == 'buy', self.orders))
+        buy_orders = list(filter(lambda o: o.side == OrderSide.Buy, self.orders))
         buy_vwap = select_sum(lambda o: o.volume * o.price,
                               buy_orders) / select_sum(lambda o: o.volume, buy_orders)
 
-        sell_orders = list(filter(lambda o: o.side == 'sell', self.orders))
+        sell_orders = list(filter(lambda o: o.side == OrderSide.Sell, self.orders))
         sell_vwap = select_sum(lambda o: o.volume * o.price, sell_orders) / \
             select_sum(lambda o: o.volume, sell_orders)
 

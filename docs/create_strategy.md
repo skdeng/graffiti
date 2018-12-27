@@ -1,6 +1,7 @@
 # How to create a new trade strategy
 
 ## Structure
+
 The entry point must be defined as a `run_strategy(price_data, config)` function inside a python file that takes in `price_data` and `config` as arguments. It must return a list of integers that represent trade volume of the given asset. The list of trade actions has to have the same length as the input price_data. By convention, positive number represent purchase and negative number represent sale.
 
 ## Configuration
