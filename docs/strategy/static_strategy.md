@@ -1,8 +1,6 @@
 # Static Strategy
 
-A static strategy is a trade strategy that depends only the market price at each point in time.
-
-_Note: Such strategies are not very flexible and are not recommended beyond initial experimentations._
+A static strategy is a trade strategy that depends only the market price at each point in time. Such strategies are not very flexible and are not recommended beyond initial experimentations. See [Dynamic Strategy](./dynamic_strategy.md) for a more flexible implementation.
 
 ## Structure
 

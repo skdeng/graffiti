@@ -28,8 +28,8 @@ Each strategies is defined as an element in the `strategies` array. All paramete
 | `enabled` | Strategies that are marked as `enabled: false` won't be run | `true` |
 | `flat_fee` | Flat fee on every transaction in base currency | `0` |
 | `ratio_fee` | Percent fee on every transaction in base currency | `0` |
-| `config` | Custom configuration object that can be access from the strategy | `{}` |
 | `portfolio` | A startegy-specific portfolio can be defined, which will override the global portfolio | \<Global portfolio\> |
+| `config` | Custom configuration object that can be access from the strategy | `{}` |
 
 ## Portfolio
 

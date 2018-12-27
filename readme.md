@@ -24,4 +24,4 @@ For more details on configuration files, see [Configuration Files](./docs/config
 
 ## Development
 
-[How to create new trade strategies](./docs/create_strategy.md)
+[How to create new trade strategies](./docs/strategy/static_strategy.md)
