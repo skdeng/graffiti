@@ -33,4 +33,6 @@ def run_strategy(price_data, config):
     trade_actions[setup == 9] = 1
     trade_actions[setup == -9] = -1
 
+    trade_actions = [[act] for act in trade_actions]
+
     return trade_actions

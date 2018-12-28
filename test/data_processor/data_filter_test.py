@@ -1,6 +1,7 @@
 from scipy.signal import argrelextrema
+import numpy as np
 
-from dsi.data_processor.data_filter import *
+from graffiti.data_processor.data_filter import *
 
 
 def test_conv_smoothing():

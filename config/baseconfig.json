@@ -1,37 +1,29 @@
 {
-  "single_asset_portfolio": {
-    "initial_currency": 1000,
-    "initial_asset": 10
+  "portfolio": {
+    "USD": 10000,
+    "AAPL": 10,
+    "overdraw": true
   },
   "input": {
     "input_type": "quandl",
-    "input_source": "xM6Bh-vY7JsUncDqo7SE",
-    "symbol": "MSFT",
-    "display": "true"
+    "input_source": "env:quandl_api_key",
+    "symbol": "AAPL",
+    "display": true
   },
   "strategies": [
     {
-      "file": "dsi\\strategies\\mr_strategy.py",
-      "name": "mr_strategy",
+      "file": "graffiti/strategies/modified_mr_strategy.py",
+      "name": "modified mr",
       "enabled": true,
       "config": {
-        "window": 12
+        "window": 200,
+        "base_currency": "USD"
       },
       "flat_fee": 0,
       "ratio_fee": 0
     },
     {
-      "file": "dsi\\strategies\\mr_strategy.py",
-      "name": "mr_strategy 1%",
-      "enabled": false,
-      "config": {
-        "window": 12
-      },
-      "flat_fee": 0,
-      "ratio_fee": 0.01
-    },
-    {
-      "file": "dsi\\strategies\\local_extrema_strategy.py",
+      "file": "graffiti/strategies/local_extrema_strategy.py",
       "enabled": false,
       "config": {
         "price_diff_min": 0,
@@ -42,12 +34,13 @@
       "ratio_fee": 0
     },
     {
-      "file": "dsi/strategies/td_strategy.py",
+      "file": "graffiti/strategies/td_strategy.py",
       "enabled": true,
       "config": {}
     },
     {
-      "file": "dsi/strategies/hold_strategy.py"
+      "file": "graffiti/strategies/hold_strategy.py",
+      "enabled": true
     }
   ]
 }

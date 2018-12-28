@@ -1,6 +1,6 @@
 import numpy as np
 
-from dsi.data_processor.data_label import *
+from graffiti.data_processor.data_label import *
 
 
 def test_get_local_buysell_label():
