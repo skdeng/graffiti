@@ -2,13 +2,11 @@
 
 [![Build Status](https://travis-ci.com/skdeng/graffiti.svg?branch=master)](https://travis-ci.com/skdeng/graffiti)
 
+Project Graffiti is a framework for testing algorithmic trading strategies. It handles all the extra overhead so that you can focus on designing the best strategy to beat the market.
+
 ## Getting Started
 
-## Prerequisites
-
 The latest version of Python 3 is needed. See [official Python website](https://www.python.org/downloads/release/python-371/) for instruction.
-
-## Installation
 
 Install python packges:
 
@@ -16,11 +14,15 @@ Install python packges:
 
 ## How to run
 
-### Using the runner
+### Using the console runner
 
 `python graffiti_console.py -c <path to configuration file>`
 
 For more details on configuration files, see [Configuration Files](./docs/config_files.md)
+
+### GUI
+
+Coming soon
 
 ## Development
 
