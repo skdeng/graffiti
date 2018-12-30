@@ -1,9 +1,0 @@
-BUG: all strategy generates the same portfolio history
-    hypothesis: function to execute the orders do not modify the portfolio
-
-- allow strategy to choose the stepping timeframe
-- finish conversion to use market frame instead of raw price
-- add example pair trading strategy
-
-- generate strategy boilerplate code
-- strategy designer UI
