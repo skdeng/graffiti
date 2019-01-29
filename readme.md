@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/skdeng/graffiti.svg?branch=master)](https://travis-ci.com/skdeng/graffiti)
 
-Project Graffiti is a framework for testing algorithmic trading strategies. It handles all the extra overhead so that you can focus on designing the best strategy to beat the market. This is essentially the python implementation of [Project Black Cross](https://github.com/skdeng/blackcross)
+Project Graffiti is a framework for testing algorithmic trading strategies. It handles all the extra overhead so that you can focus on designing the best strategy to beat the market. This is essentially the python implementation of [Project Black Cross].(https://github.com/skdeng/blackcross)
 
 ## Getting Started
 
